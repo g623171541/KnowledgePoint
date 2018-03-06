@@ -40,4 +40,12 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), 
     [self run];
 });
 
-
+---
+``` objective-c
+//主线程中
+NSLog(@"1"); //任务1
+dispatch_sync(dispatch_get_main_queue(), ^{
+    NSLog(@"2"); //任务2
+});
+```
+> *主线程的主队列是一个串行队列，任务2被加入到祝队列中，dispatch_sync方法会阻塞主线程等待任务2完成，但是任务2是最后被添加到主队列的，上面一整段代码可以看做是另一个主队列的任务，我们暂且成为任务x，任务x是比任务2先入队的，所以他应该执行完了才能够执行任务2，但是他这时候被dispatch_sync阻塞着，dispatch_sync需要等待任务2完成才返回，所以导致了互相等待，死锁。*
