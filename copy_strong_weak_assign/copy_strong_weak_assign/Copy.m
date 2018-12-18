@@ -18,15 +18,15 @@
     self.strCopy = str;
     self.strStrong = str;
     
-    NSLog(@"copy:%@",self.strCopy);         // copy:string
-    NSLog(@"strong:%@",self.strStrong);     // strong:string
+    NSLog(@"copy:%@ %p",self.strCopy,self.strCopy);         // copy:string
+    NSLog(@"strong:%@ %p",self.strStrong,self.strStrong);     // strong:string
     
     
     // 修改原有的字符串
     [str setString:@"ohter"];
     
-    NSLog(@"copy:%@",self.strCopy);         // copy:string
-    NSLog(@"strong:%@",self.strStrong);     // strong:ohter
+    NSLog(@"copy:%@ %p",self.strCopy,self.strCopy);         // copy:string
+    NSLog(@"strong:%@ %p",self.strStrong,self.strStrong);     // strong:ohter
     
     // 如果是用copy修饰的属性，修改了原有的字符串，该属性不发生变化
     // 如果是用strong修饰的属性，修改了原字符串，属性随之变化。
