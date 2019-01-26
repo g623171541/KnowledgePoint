@@ -14,6 +14,7 @@
 		1CF8D37021FA913400A48A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF8D36E21FA913400A48A87 /* LaunchScreen.storyboard */; };
 		1CF8D37321FA913400A48A87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF8D37221FA913400A48A87 /* main.m */; };
 		1CF8D37B21FA929100A48A87 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF8D37A21FA929100A48A87 /* Person.m */; };
+		1CF8D37E21FBE54400A48A87 /* NSURL+HOOK.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF8D37D21FBE54400A48A87 /* NSURL+HOOK.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		1CF8D37221FA913400A48A87 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1CF8D37921FA929100A48A87 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		1CF8D37A21FA929100A48A87 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		1CF8D37C21FBE54400A48A87 /* NSURL+HOOK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+HOOK.h"; sourceTree = "<group>"; };
+		1CF8D37D21FBE54400A48A87 /* NSURL+HOOK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+HOOK.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				1CF8D36721FA913200A48A87 /* ViewController.m */,
 				1CF8D37921FA929100A48A87 /* Person.h */,
 				1CF8D37A21FA929100A48A87 /* Person.m */,
+				1CF8D37C21FBE54400A48A87 /* NSURL+HOOK.h */,
+				1CF8D37D21FBE54400A48A87 /* NSURL+HOOK.m */,
 				1CF8D36921FA913200A48A87 /* Main.storyboard */,
 				1CF8D36C21FA913400A48A87 /* Assets.xcassets */,
 				1CF8D36E21FA913400A48A87 /* LaunchScreen.storyboard */,
@@ -146,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF8D37E21FBE54400A48A87 /* NSURL+HOOK.m in Sources */,
 				1CF8D36821FA913200A48A87 /* ViewController.m in Sources */,
 				1CF8D37321FA913400A48A87 /* main.m in Sources */,
 				1CF8D37B21FA929100A48A87 /* Person.m in Sources */,
