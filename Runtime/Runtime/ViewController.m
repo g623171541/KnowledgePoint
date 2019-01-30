@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Person.h"
+#import "RuntimeObject.h"
 #import <objc/message.h>
 
 @interface ViewController ()
@@ -20,11 +21,17 @@
     [super viewDidLoad];
 
     
-    //应用1：利用runtime进行消息转发
+    // 应用1：利用runtime动态添加方法
 //    [self initPersonWithRuntime];
     
-    //应用2：使用runtime来实现方法欺骗（方法的交换）
-    [self hookNSURL];
+    // 应用2：使用runtime来实现方法欺骗（方法的交换）
+//    [self hookNSURL];
+    
+    // 应用3：消息转发
+    RuntimeObject *objc = [[RuntimeObject alloc] init];
+    [objc test];    // test方法只是在.h中声明了并没实现
+    
+    
     
 }
 
@@ -43,7 +50,7 @@
      */
 }
 
-//应用1：利用runtime进行消息转发
+//应用1：利用runtimed动态添加方法
 -(void)initPersonWithRuntime{
     Person * p =[[Person alloc] init];
     [p eat];    // eat 在Person.h中只声明了，并没有在.m 中实现，运行将会报错

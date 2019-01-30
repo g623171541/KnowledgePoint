@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A134A2D220128B4000F6E9D /* RuntimeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A134A2C220128B4000F6E9D /* RuntimeObject.m */; };
 		1CF8D36521FA913200A48A87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF8D36421FA913200A48A87 /* AppDelegate.m */; };
 		1CF8D36821FA913200A48A87 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF8D36721FA913200A48A87 /* ViewController.m */; };
 		1CF8D36B21FA913200A48A87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF8D36921FA913200A48A87 /* Main.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A134A2B220128B4000F6E9D /* RuntimeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeObject.h; sourceTree = "<group>"; };
+		0A134A2C220128B4000F6E9D /* RuntimeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeObject.m; sourceTree = "<group>"; };
 		1CF8D36021FA913200A48A87 /* Runtime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runtime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF8D36321FA913200A48A87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1CF8D36421FA913200A48A87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 				1CF8D37A21FA929100A48A87 /* Person.m */,
 				1CF8D37C21FBE54400A48A87 /* NSURL+HOOK.h */,
 				1CF8D37D21FBE54400A48A87 /* NSURL+HOOK.m */,
+				0A134A2B220128B4000F6E9D /* RuntimeObject.h */,
+				0A134A2C220128B4000F6E9D /* RuntimeObject.m */,
 				1CF8D36921FA913200A48A87 /* Main.storyboard */,
 				1CF8D36C21FA913400A48A87 /* Assets.xcassets */,
 				1CF8D36E21FA913400A48A87 /* LaunchScreen.storyboard */,
@@ -154,6 +159,7 @@
 				1CF8D37E21FBE54400A48A87 /* NSURL+HOOK.m in Sources */,
 				1CF8D36821FA913200A48A87 /* ViewController.m in Sources */,
 				1CF8D37321FA913400A48A87 /* main.m in Sources */,
+				0A134A2D220128B4000F6E9D /* RuntimeObject.m in Sources */,
 				1CF8D37B21FA929100A48A87 /* Person.m in Sources */,
 				1CF8D36521FA913200A48A87 /* AppDelegate.m in Sources */,
 			);
