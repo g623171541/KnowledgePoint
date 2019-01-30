@@ -30,13 +30,19 @@
 
 +(BOOL)resolveInstanceMethod:(SEL)sel{
     
-    // 在这里添加eat方法
-    class_addMethod(self, sel, eat, "");
-    // eat的名字就是函数指针，所以不用写()，否则会报错
+    if (sel == @selector(eat)) {
+        // 在这里添加eat方法
+        class_addMethod(self, sel, eat, "v@:");
+        // eat的名字就是函数指针，所以不用写()，否则会报错
+        
+        return YES;
+    }
     
-    
-    // 添加有参数的函数
-    class_addMethod(self, sel, eatObjc, "");
+    if (sel == @selector(eatObjc:)) {
+        // 添加有参数的函数
+        class_addMethod(self, sel, eatObjc, "v@:@");
+        return YES;
+    }
     
     return [super resolveInstanceMethod:sel];
 }

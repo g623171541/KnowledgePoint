@@ -25,6 +25,7 @@
         ⭐️如果这么写的话，造成了递归调用，内存泄漏
      */
     
+    // 调用HK_URLWithString方法其实就是调用原本的URLWithString方法，因为两个方法的实现已经互换了。
     NSURL *url = [NSURL HK_URLWithString:URLString];
     
     if (url == nil) {
