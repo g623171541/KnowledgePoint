@@ -10,7 +10,7 @@
 
 @implementation Paixu_maopao
 
-+ (void)maopao_1:(NSArray *)array{
++ (void)maopao:(NSArray *)array{
     NSInteger length = array.count;
     NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
     

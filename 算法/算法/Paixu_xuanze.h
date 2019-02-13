@@ -1,5 +1,5 @@
 //
-//  Paixu_maopao.h
+//  Paixu_xuanze.h
 //  算法
 //
 //  Created by UBK on 2019/2/13.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Paixu_maopao : NSObject
+@interface Paixu_xuanze : NSObject
 
-+(void)maopao:(NSArray *)array;
++(void)xuanze:(NSArray *)array;
 
 @end
 
