@@ -11,6 +11,7 @@
 #import "GXDTriangleView.h"
 #import "GXDRectangleView.h"
 #import "GXDCircleView.h"
+#import "GXDGraduallyView.h"
 
 
 @interface ViewController ()
@@ -41,6 +42,11 @@
     GXDCircleView *circleView = [[GXDCircleView alloc] initWithFrame:CGRectMake(0, 130, [UIScreen mainScreen].bounds.size.width, 50)];
     circleView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:circleView];
+    
+    // 画渐变（放射性渐变 或 线性渐变）
+    GXDGraduallyView *graduallyView = [[GXDGraduallyView alloc] initWithFrame:CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 50)];
+    graduallyView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:graduallyView];
     
 }
 
