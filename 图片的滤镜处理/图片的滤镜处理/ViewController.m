@@ -24,13 +24,24 @@
     [self convertFormatTest];
     [self testImageGray];
     [self testImageReColor];
+    [self testImageHighlight];
+}
+
+-(void)testImageHighlight{
+    UIImage *image = [UIImage imageNamed:@"sea.jpeg"];
+    // 图片转data
+    unsigned char *imageData = [self convertUIImageToData:image];
+    // 将data处理为灰色
+    unsigned char *newImageData = [self imageHighlightWithData:imageData width:image.size.width height:image.size.height];
+    // data转图片
+    self.imageView4.image = [self convertDataToUIImage:newImageData image:image];
 }
 
 -(void)testImageReColor{
     UIImage *image = [UIImage imageNamed:@"sea.jpeg"];
     // 图片转data
     unsigned char *imageData = [self convertUIImageToData:image];
-    // 将data处理为灰色
+    // 将data处理为彩色
     unsigned char *newImageData = [self imageReColorWithData:imageData width:image.size.width height:image.size.height];
     // data转图片
     self.imageView3.image = [self convertDataToUIImage:newImageData image:image];
@@ -186,6 +197,22 @@
             [colorArray addObject:newNumStr];
         }
         beforNum = num;
+    }
+    
+    for (int h=0; h<height; h++) {
+        for (int w=0; w<width; w++) {
+            unsigned int imageIndex = h * width + w;// 第几个像素
+            unsigned char bitmapRed = *(imageData + imageIndex * 4);// 地址偏移，每个像素有RGBA四个值
+            unsigned char bitmapGreen = *(imageData + imageIndex * 4 + 1);
+            unsigned char bitmapBlue = *(imageData + imageIndex * 4 + 2);
+            
+            unsigned char newBitmapRed = [colorArray[bitmapRed] intValue];
+            unsigned char newBitmapGreen = [colorArray[bitmapGreen] intValue];
+            unsigned char newBitmapBlue = [colorArray[bitmapBlue] intValue];
+            memset(resultData + imageIndex * 4, newBitmapRed, 1);
+            memset(resultData + imageIndex * 4 + 1, newBitmapGreen, 1);
+            memset(resultData + imageIndex * 4 + 2, newBitmapBlue, 1);
+        }
     }
     
     return resultData;
