@@ -19,9 +19,9 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // 绘制三角形
-    CGContextMoveToPoint(ctx, 100, 3);
-    CGContextAddLineToPoint(ctx, 100, 20);
-    CGContextAddLineToPoint(ctx, 180, 20);
+    CGContextMoveToPoint(ctx, 100, 100);
+    CGContextAddLineToPoint(ctx, 100, 200);
+    CGContextAddLineToPoint(ctx, 180, 200);
     CGContextClosePath(ctx);
     
     // 关闭起点和终点

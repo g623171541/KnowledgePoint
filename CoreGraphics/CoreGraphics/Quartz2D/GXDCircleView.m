@@ -20,7 +20,7 @@
     
     // 100 20 为圆心
     // 最后一个0代表逆时针，1代表顺时针
-    CGContextAddArc(ctx, 100, 20, 10, 0, M_PI * 2, 1);
+    CGContextAddArc(ctx, 100, 200, 50, 0, M_PI * 2, 1);
     
 //    CGContextSetRGBFillColor(ctx, 1, 0, 0, 1);
 //    [[UIColor whiteColor] setStroke];

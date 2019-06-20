@@ -24,29 +24,29 @@
     [super viewDidLoad];
     
     // 画直线
-    GXDLineView *lineView = [[GXDLineView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, 28)];
-    lineView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:lineView];
+//    GXDLineView *lineView = [[GXDLineView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, 28)];
+//    lineView.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:lineView];
     
     // 画三角形
-    GXDTriangleView *triangleView = [[GXDTriangleView alloc] initWithFrame:CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 28)];
-    triangleView.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:triangleView];
+//    GXDTriangleView *triangleView = [[GXDTriangleView alloc] initWithFrame:CGRectMake(0, 70, [UIScreen mainScreen].bounds.size.width, 28)];
+//    triangleView.backgroundColor = [UIColor greenColor];
+//    [self.view addSubview:triangleView];
     
     // 画矩形
-    GXDRectangleView *rectangleView = [[GXDRectangleView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 30)];
-    rectangleView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:rectangleView];
+//    GXDRectangleView *rectangleView = [[GXDRectangleView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 30)];
+//    rectangleView.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:rectangleView];
     
     // 画圆形
-    GXDCircleView *circleView = [[GXDCircleView alloc] initWithFrame:CGRectMake(0, 130, [UIScreen mainScreen].bounds.size.width, 50)];
-    circleView.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:circleView];
+//    GXDCircleView *circleView = [[GXDCircleView alloc] initWithFrame:CGRectMake(0, 130, [UIScreen mainScreen].bounds.size.width, 50)];
+//    circleView.backgroundColor = [UIColor blueColor];
+//    [self.view addSubview:circleView];
     
     // 画渐变（放射性渐变 或 线性渐变）
-    GXDGraduallyView *graduallyView = [[GXDGraduallyView alloc] initWithFrame:CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 50)];
-    graduallyView.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:graduallyView];
+//    GXDGraduallyView *graduallyView = [[GXDGraduallyView alloc] initWithFrame:CGRectMake(0, 200, [UIScreen mainScreen].bounds.size.width, 50)];
+//    graduallyView.backgroundColor = [UIColor purpleColor];
+//    [self.view addSubview:graduallyView];
     
 }
 

@@ -20,9 +20,9 @@
     
     // 2️⃣绘制直线，保存绘制信息
     // 设置起点
-    CGContextMoveToPoint(ctx, 10, 10);
+    CGContextMoveToPoint(ctx, 100, 300);
     // 设置终点
-    CGContextAddLineToPoint(ctx, 100, 10);
+    CGContextAddLineToPoint(ctx, 300, 600);
     
     // 3️⃣设置绘图的状态
     // 设置线条的颜色

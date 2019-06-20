@@ -21,7 +21,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // 画四边形
-    CGContextAddRect(ctx, CGRectMake(60, 2, 100, 20));
+    CGContextAddRect(ctx, CGRectMake(60, 200, 100, 200));
     CGContextSetRGBStrokeColor(ctx, 1.0, 0, 1.0, 1.0);
     CGContextSetRGBFillColor(ctx, 1, 1, 0, 1.0);
 //    [[UIColor redColor] setStroke];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A5542FA22BBD13000D4B1BD /* GXDBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5542F922BBD13000D4B1BD /* GXDBoardView.m */; };
 		0A8DD1A4224C761900F4A7D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8DD1A3224C761900F4A7D4 /* AppDelegate.m */; };
 		0A8DD1A7224C761900F4A7D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8DD1A6224C761900F4A7D4 /* ViewController.m */; };
 		0A8DD1AA224C761900F4A7D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8DD1A8224C761900F4A7D4 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A5542F822BBD13000D4B1BD /* GXDBoardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXDBoardView.h; sourceTree = "<group>"; };
+		0A5542F922BBD13000D4B1BD /* GXDBoardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GXDBoardView.m; sourceTree = "<group>"; };
 		0A8DD19F224C761900F4A7D4 /* CoreGraphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreGraphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8DD1A2224C761900F4A7D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A8DD1A3224C761900F4A7D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				0AFACAC5224CA9780011916D /* GXDCircleView.m */,
 				0AFACAC7224DA4510011916D /* GXDGraduallyView.h */,
 				0AFACAC8224DA4510011916D /* GXDGraduallyView.m */,
+				0A5542F822BBD13000D4B1BD /* GXDBoardView.h */,
+				0A5542F922BBD13000D4B1BD /* GXDBoardView.m */,
 			);
 			path = Quartz2D;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				0A8DD1B2224C761A00F4A7D4 /* main.m in Sources */,
 				0A8DD1BB224C76B700F4A7D4 /* GXDLineView.m in Sources */,
 				0AFACAC3224CA2250011916D /* GXDRectangleView.m in Sources */,
+				0A5542FA22BBD13000D4B1BD /* GXDBoardView.m in Sources */,
 				0AFACABD224C9DD50011916D /* GXDTriangleView.m in Sources */,
 				0A8DD1A4224C761900F4A7D4 /* AppDelegate.m in Sources */,
 			);
