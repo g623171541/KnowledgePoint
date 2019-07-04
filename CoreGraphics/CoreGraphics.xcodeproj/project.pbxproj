@@ -15,6 +15,7 @@
 		0A8DD1AF224C761A00F4A7D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8DD1AD224C761A00F4A7D4 /* LaunchScreen.storyboard */; };
 		0A8DD1B2224C761A00F4A7D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8DD1B1224C761A00F4A7D4 /* main.m */; };
 		0A8DD1BB224C76B700F4A7D4 /* GXDLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8DD1BA224C76B700F4A7D4 /* GXDLineView.m */; };
+		0AE6C29422CCD5BD0020DA6D /* GXDHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6C29322CCD5BD0020DA6D /* GXDHuman.m */; };
 		0AFACABD224C9DD50011916D /* GXDTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFACABC224C9DD50011916D /* GXDTriangleView.m */; };
 		0AFACAC3224CA2250011916D /* GXDRectangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFACAC2224CA2250011916D /* GXDRectangleView.m */; };
 		0AFACAC6224CA9780011916D /* GXDCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFACAC5224CA9780011916D /* GXDCircleView.m */; };
@@ -36,6 +37,8 @@
 		0A8DD1B1224C761A00F4A7D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A8DD1B9224C76B700F4A7D4 /* GXDLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXDLineView.h; sourceTree = "<group>"; };
 		0A8DD1BA224C76B700F4A7D4 /* GXDLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GXDLineView.m; sourceTree = "<group>"; };
+		0AE6C29222CCD5BD0020DA6D /* GXDHuman.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXDHuman.h; sourceTree = "<group>"; };
+		0AE6C29322CCD5BD0020DA6D /* GXDHuman.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GXDHuman.m; sourceTree = "<group>"; };
 		0AFACABB224C9DD50011916D /* GXDTriangleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXDTriangleView.h; sourceTree = "<group>"; };
 		0AFACABC224C9DD50011916D /* GXDTriangleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GXDTriangleView.m; sourceTree = "<group>"; };
 		0AFACAC1224CA2250011916D /* GXDRectangleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GXDRectangleView.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				0AFACAC8224DA4510011916D /* GXDGraduallyView.m */,
 				0A5542F822BBD13000D4B1BD /* GXDBoardView.h */,
 				0A5542F922BBD13000D4B1BD /* GXDBoardView.m */,
+				0AE6C29222CCD5BD0020DA6D /* GXDHuman.h */,
+				0AE6C29322CCD5BD0020DA6D /* GXDHuman.m */,
 			);
 			path = Quartz2D;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AFACAC9224DA4510011916D /* GXDGraduallyView.m in Sources */,
+				0AE6C29422CCD5BD0020DA6D /* GXDHuman.m in Sources */,
 				0AFACAC6224CA9780011916D /* GXDCircleView.m in Sources */,
 				0A8DD1A7224C761900F4A7D4 /* ViewController.m in Sources */,
 				0A8DD1B2224C761A00F4A7D4 /* main.m in Sources */,
