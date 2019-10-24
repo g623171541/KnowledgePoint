@@ -166,6 +166,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="btn1280" destination="9H3-5L-mOg" id="agR-DE-uyK"/>
+                        <outlet property="btn30fps" destination="QtJ-21-a1O" id="TRp-62-Ivi"/>
+                        <outlet property="btn4k" destination="xOR-4T-QDa" id="qGr-nC-7sJ"/>
+                        <outlet property="btn60fps" destination="SFL-rL-xOF" id="G5o-Yp-2lS"/>
+                        <outlet property="btn720" destination="aDl-nA-K1H" id="rH2-vH-Z5O"/>
                         <outlet property="messageLabel" destination="jvs-1A-8OH" id="k11-6G-XK4"/>
                         <outlet property="startStopBtn" destination="2ox-7s-n5X" id="bBt-9t-CCP"/>
                     </connections>

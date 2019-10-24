@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 @interface ViewController ()<AVCaptureFileOutputRecordingDelegate>
 
@@ -85,25 +85,33 @@
     self.previewLayer.frame = self.view.bounds;
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
+    // 设置图层显示的方向
+    self.previewLayer.connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
 
     [self.captureSession startRunning];
-
 }
+
 
 #pragma mark - 开始结束
 - (IBAction)start:(UIButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"结束"]) {
+        if ([self.output isRecording]) {
+            [self.output stopRecording];
+        }
         [self.startStopBtn setTitle:@"开始" forState:UIControlStateNormal];
         NSLog(@"结束录制");
-        [self.output stopRecording];
-        return;
     }else{
+        if ([self.output isRecording]) {
+            NSLog(@"还在录制，无法开始");
+            return;
+        }
         [self.startStopBtn setTitle:@"结束" forState:UIControlStateNormal];
         NSLog(@"开始录制");
         AVCaptureConnection *connection = [self.output connectionWithMediaType:AVMediaTypeVideo];
         connection.videoOrientation = [self.previewLayer connection].videoOrientation;
 
-        NSURL *url = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingString:@"myMovie.mov"]];
+        // 设置保存的路径
+        NSURL *url = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingString:[self getNowTimeTimestamp]]];
         [self.output startRecordingToOutputFileURL:url recordingDelegate:self];
     }
 
@@ -113,38 +121,76 @@
     NSLog(@"outputFileURL = %@",outputFileURL);
 
     //保存视频到相册
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:nil];
-
-    ALAssetsLibrary *assetsLibrary=[[ALAssetsLibrary alloc] init];
-    [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (error) {
-            NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
-        }
-        if (lastBackgroundTaskIdentifier!=UIBackgroundTaskInvalid) {
-            [[UIApplication sharedApplication] endBackgroundTask:lastBackgroundTaskIdentifier];
-        }
-        NSLog(@"成功保存视频到相簿.");
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputFileURL];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"%@", [NSString stringWithFormat:@"保存---%@",success?@"成功":@"失败"]);
     }];
-
 }
 
 
 #pragma mark - 设置尺寸
 - (IBAction)setSize720p:(UIButton *)sender {
+    [self resetSessionPreset:self.captureSession resolution:720];
 }
-
 - (IBAction)setSize1280p:(UIButton *)sender {
+    [self resetSessionPreset:self.captureSession resolution:1080];
+}
+- (IBAction)setSize4k:(UIButton *)sender {
+    [self resetSessionPreset:self.captureSession resolution:2160];
+}
+#pragma mark - 设置分辨率
+- (void)resetSessionPreset:(AVCaptureSession *)m_session resolution:(int)resolution{
+    [m_session beginConfiguration];
+    switch (resolution) {
+        case 1080:
+            m_session.sessionPreset = [m_session canSetSessionPreset:AVCaptureSessionPreset1920x1080] ? AVCaptureSessionPreset1920x1080 : AVCaptureSessionPresetHigh;
+            break;
+        case 720:
+            m_session.sessionPreset = [m_session canSetSessionPreset:AVCaptureSessionPreset1280x720] ? AVCaptureSessionPreset1280x720 : AVCaptureSessionPresetMedium;
+            break;
+        case 2160: // 3840*2160 4k
+            m_session.sessionPreset = [m_session canSetSessionPreset:AVCaptureSessionPreset3840x2160] ? AVCaptureSessionPreset3840x2160 : AVCaptureSessionPresetHigh;
+            break;
+            
+        default:
+            break;
+    }
+    [m_session commitConfiguration];
 }
 
-- (IBAction)setSize4k:(UIButton *)sender {
-}
 
 #pragma mark - 设置FPS
 - (IBAction)set30Fps:(UIButton *)sender {
+    [self settingFrameRate:30];
 }
-
 - (IBAction)set60Fps:(UIButton *)sender {
+    [self settingFrameRate:60];
+}
+- (void)settingFrameRate:(int)frameRate{
+    for(AVCaptureDeviceFormat *vFormat in [self.device formats] ) {
+        CMFormatDescriptionRef description= vFormat.formatDescription;
+        float maxRate = ((AVFrameRateRange*) [vFormat.videoSupportedFrameRateRanges objectAtIndex:0]).maxFrameRate;
+        if (maxRate > frameRate - 1 &&
+            CMFormatDescriptionGetMediaSubType(description)==kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
+            if ([self.device lockForConfiguration:nil]) {
+                self.device.activeFormat = vFormat;
+                [self.device setActiveVideoMinFrameDuration:CMTimeMake(10, frameRate * 10)];
+                [self.device setActiveVideoMaxFrameDuration:CMTimeMake(10, frameRate * 10)];
+                [self.device unlockForConfiguration];
+                break;
+            }
+        }
+    }
 }
 
+
+
+#pragma mark - 工具
+-(NSString *)getNowTimeTimestamp{
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString*timeString = [NSString stringWithFormat:@"%0.f.mov", a];//转为字符型
+    return timeString;
+}
 @end
