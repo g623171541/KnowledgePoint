@@ -44,12 +44,21 @@
     }
 
     // 初始化device
-    if (@available(iOS 10.2, *)) {
-        self.device = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInDualCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
-    } else {
-        // Fallback on earlier versions
-        self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceDiscoverySession *deviceDiscoverySession =  [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+    for (AVCaptureDevice *device in deviceDiscoverySession.devices) {
+        if (AVCaptureDevicePositionBack == device.position) {
+            self.device = device;
+            NSLog(@"self.device:%@",self.device);
+        }
     }
+//    if (@available(iOS 10.2, *)) {
+//        self.device = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+//    } else {
+//        // Fallback on earlier versions
+//        self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+//    }
+    
+    
     // 添加设备的设置，必须先锁定，设置完后再解锁
     [self.device lockForConfiguration:nil];
     if ([self.device isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
@@ -61,8 +70,7 @@
     [self.device unlockForConfiguration];
 
     // 初始化视频输入对象
-    AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:nil];
+    self.videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:self.device error:nil];
     // 初始化音频输入对象
     AVCaptureDevice *audioDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
     self.audioInput = [[AVCaptureDeviceInput alloc] initWithDevice:audioDevice error:nil];
@@ -168,29 +176,38 @@
     [self settingFrameRate:60];
 }
 - (void)settingFrameRate:(int)frameRate{
-    for(AVCaptureDeviceFormat *vFormat in [self.device formats] ) {
-        CMFormatDescriptionRef description= vFormat.formatDescription;
+    NSLog(@"%@",[self.device formats]);
+    
+    AVCaptureDevice *captureDevice = self.device;
+    for(AVCaptureDeviceFormat *vFormat in [captureDevice formats]) {
+        CMFormatDescriptionRef description = vFormat.formatDescription;
         float maxRate = ((AVFrameRateRange*) [vFormat.videoSupportedFrameRateRanges objectAtIndex:0]).maxFrameRate;
-        if (maxRate > frameRate - 1 &&
-            CMFormatDescriptionGetMediaSubType(description)==kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
-            if ([self.device lockForConfiguration:nil]) {
-                self.device.activeFormat = vFormat;
-                [self.device setActiveVideoMinFrameDuration:CMTimeMake(10, frameRate * 10)];
-                [self.device setActiveVideoMaxFrameDuration:CMTimeMake(10, frameRate * 10)];
-                [self.device unlockForConfiguration];
-                break;
+        if (maxRate >= frameRate && CMFormatDescriptionGetMediaSubType(description) == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
+            if ([captureDevice lockForConfiguration:NULL] == YES) {
+                // 对比镜头支持的分辨率和当前设置的分辨率
+                CMVideoDimensions dims = CMVideoFormatDescriptionGetDimensions(description);
+                if (dims.height == 2160 && dims.width == 3840) {
+                    [self.captureSession beginConfiguration];
+                    if ([captureDevice lockForConfiguration:NULL]){
+                        captureDevice.activeFormat = vFormat;
+                        [captureDevice setActiveVideoMinFrameDuration:CMTimeMake(1, frameRate)];
+                        [captureDevice setActiveVideoMaxFrameDuration:CMTimeMake(1, frameRate)];
+                        [captureDevice unlockForConfiguration];
+                        NSLog(@"已设置：%dfps",frameRate);
+                    }
+                    [self.captureSession commitConfiguration];
+
+                }
             }
         }
     }
 }
 
-
-
 #pragma mark - 工具
 -(NSString *)getNowTimeTimestamp{
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString*timeString = [NSString stringWithFormat:@"%0.f.mov", a];//转为字符型
+    NSString*timeString = [NSString stringWithFormat:@"%0.f.mp4", a];   //转为字符型 mp4或mov都可以
     return timeString;
 }
 @end
