@@ -18,11 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self creatBitmap];
 }
 
 -(void)creatBitmap{
     // 创建BitmapContext所需要的内存空间
-    unsigned char *mapData = malloc(self.imageView.bounds.size.width * self.imageView.bounds.size.height);
+    unsigned char *mapData = malloc(self.imageView.bounds.size.width * self.imageView.bounds.size.height * 4);
     
     // bitmap的宽度,单位为像素
     NSUInteger width = self.imageView.bounds.size.width;
@@ -48,9 +50,27 @@
      */
     NSUInteger bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
     
+    for (NSInteger i=0; i<40000; i=i+4) {
+        if (i<5005) {
+            mapData[i]=random()%255;
+            mapData[i+1]=random()%255;
+            mapData[i+2]=random()%255;
+            mapData[i+3]=255;
+        }else{
+            mapData[i]=255;
+            mapData[i+1]=0;
+            mapData[i+2]=0;
+            mapData[i+3]=255;
+        }
+    }
     
-    CGContextRef context = CGBitmapContextCreate(mapData, width, height, bitsPerComponent, bytesPerRow, colorSapce, bitmapInfo);
     
+    CGContextRef context = CGBitmapContextCreate(mapData, 100, 100, bitsPerComponent, bytesPerRow, colorSapce, bitmapInfo);
+//    CGContextDrawImage(context, CGRectMake(0, 0,100, 100), NULL);
+    CGContextSetShouldAntialias(context,YES);
+    NSLog(@"%@",CGBitmapContextCreateImage(context));
+    self.imageView.image = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
+    CGContextRelease(context);
     
 }
 
