@@ -19,8 +19,22 @@
 }
 
 - (IBAction)clickAction:(id)sender {
-    NSLog(@"点击了按钮，发送信号");
-    [self.btnClickSignal sendNext:@"信号"];
+    // 第一种用法
+//    NSLog(@"点击了按钮，发送信号");
+//    [self.btnClickSignal sendNext:@"信号"];
+    
+    // 第二种用法
+//    [self click:@"click something"];
+    
+    // 第三种用法
+//    self.backgroundColor = [UIColor redColor];
+    
+    // 第四种方法
+    self.name = @"gxd";
+}
+
+-(void)click:(NSString *)str{
+    NSLog(@"click方法执行---%@",str);
 }
 
 

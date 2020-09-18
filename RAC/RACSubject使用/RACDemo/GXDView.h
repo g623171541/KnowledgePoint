@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GXDView : UIView
 @property (nonatomic,strong) RACSubject *btnClickSignal;
+@property (nonatomic,strong) NSString *name;
 @end
 
 NS_ASSUME_NONNULL_END
