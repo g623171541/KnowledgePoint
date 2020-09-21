@@ -51,7 +51,17 @@
 //    [self demo12];
     
     // ignore 忽略
-    [self demo13];
+//    [self demo13];
+    
+    // distinctUntilChanged忽略相同的数据
+//    [self demo14];
+    
+    // take 从开始一共取N次的信号
+//    [self demo15];
+    
+    // skip 跳过几个信号,不接受
+    [self demo16];
+    
 }
 
 -(void)demo1{
@@ -353,4 +363,63 @@
     // 3. 发送数据
     [signal sendNext:@"A"];
 }
+
+-(void)demo14{
+    // 当上一次的值和当前的值有明显的变化就会发出信号，否则会被忽略掉。
+    // 在开发中，刷新UI经常使用，只有两次数据不一样才需要刷新
+    
+    //创建信号
+    RACSubject*signal = [RACSubject subject];
+    //调用方法后订阅信号
+    [[signal distinctUntilChanged] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    [signal sendNext:@"luobo"];
+    [signal sendNext:@"luobo"];
+    [signal sendNext:@"luobo"];
+    [signal sendNext:@"luo"];
+}
+
+-(void)demo15{
+    // 从开始一共取N次的信号
+    
+    //创建信号
+    RACSubject*subject = [RACSubject subject];
+    RACSubject*signal = [RACSubject subject];
+    
+    // 1. take是取前面的几个值
+    [[subject take:2] subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+    // 2. takeLast:取后面的多少个值，必须是发送完的
+    //只有调用[subject sendCompleted];才会发送信号
+//    [[subject takeLast:2] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    }];
+    
+    // 3. takeUntil:只要是传入的信号发送完成或者是signal发送信号，就不会接收信号的内容
+//    [[signal takeUntil:signal] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    }];
+    //发送数据
+    [subject sendNext:@"1"];
+    [subject sendNext:@"2"];
+    [subject sendNext:@"3"];
+    [subject sendCompleted];
+    [signal sendNext:@"signal"];
+}
+
+-(void)demo16{
+    //创建信号
+    RACSubject*subject = [RACSubject subject];
+    [[subject skip:2] subscribeNext:^(id x) {//跳跃过两个，执行下面的几个
+        NSLog(@"%@", x);
+    }];
+    [subject sendNext:@"LUO"];
+    [subject sendNext:@"1"];
+    [subject sendNext:@"3"];
+    [subject sendNext:@"4"];
+}
+
 @end
