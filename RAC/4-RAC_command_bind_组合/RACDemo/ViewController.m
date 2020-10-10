@@ -12,6 +12,8 @@
 
 @interface ViewController ()
 
+@property (strong,nonatomic) RACCommand *command;
+
 @end
 
 @implementation ViewController
@@ -19,49 +21,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // RACCommand 命令
-//    [self demo1];
-//    [self demo2];
-    
-    // 绑定
-//    [self demo3]; // bind
-//    [self demo4]; // flattenMap
-    
-//    [self demo5]; // 一般用flattenMap处理信号中的信号
-    
-    // map映射
-//    [self demo6];
-    
-    // concat 组合
-//    [self demo7];
-    
-    // then 忽略掉第一个信号的所有值
-//    [self demo8];
-    
-    // merge 合并信号，多个信号无序处理
-//    [self demo9];
-    
-    // zip 压缩信号
-//    [self demo10];
-    
-    // combineLatest 信号合并
-//    [self demo11];
-    
-    // filter 过滤
-//    [self demo12];
-    
-    // ignore 忽略
-//    [self demo13];
-    
-    // distinctUntilChanged忽略相同的数据
-//    [self demo14];
-    
-    // take 从开始一共取N次的信号
-//    [self demo15];
-    
-    // skip 跳过几个信号,不接受
-    [self demo16];
-    
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+        // RACCommand 命令
+    //    [self demo1];
+        [self demo2];
+        
+        // 绑定
+    //    [self demo3]; // bind
+    //    [self demo4]; // flattenMap
+        
+    //    [self demo5]; // 一般用flattenMap处理信号中的信号
+        
+        // map映射
+    //    [self demo6];
+        
+        // concat 组合
+    //    [self demo7];
+        
+        // then 忽略掉第一个信号的所有值
+    //    [self demo8];
+        
+        // merge 合并信号，多个信号无序处理
+    //    [self demo9];
+        
+        // zip 压缩信号
+    //    [self demo10];
+        
+        // combineLatest 信号合并
+    //    [self demo11];
+        
+        // filter 过滤
+    //    [self demo12];
+        
+        // ignore 忽略
+    //    [self demo13];
+        
+        // distinctUntilChanged忽略相同的数据
+    //    [self demo14];
+        
+        // take 从开始一共取N次的信号
+    //    [self demo15];
+        
+        // skip 跳过几个信号,不接受
+    //    [self demo16];
 }
 
 -(void)demo1{
@@ -86,7 +90,7 @@
 
 -(void)demo2{
     // 1. 创建命令
-    RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+    _command = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         NSLog(@"创建命令的Block --- 命令：%@",input);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
             // 发送数据
@@ -98,7 +102,7 @@
     }];
     
     // 监听事件有没有执行完毕
-    [command.executing subscribeNext:^(NSNumber * _Nullable x) {
+    [_command.executing subscribeNext:^(NSNumber * _Nullable x) {
         if ([x boolValue]) {
             NSLog(@"正在执行");
         }else{
@@ -107,7 +111,7 @@
     }];
     
     // 2. 执行命令
-    RACSignal *signal = [command execute:@"要执行的命令数据"];
+    RACSignal *signal = [_command execute:@"要执行的命令数据"];
     
     // 3. 订阅信号
     [signal subscribeNext:^(id  _Nullable x) {
