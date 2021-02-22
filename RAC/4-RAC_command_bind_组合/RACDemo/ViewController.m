@@ -13,6 +13,8 @@
 @interface ViewController ()
 
 @property (strong,nonatomic) RACCommand *command;
+@property (strong,nonatomic) RACSignal *signalA;
+@property (strong,nonatomic) RACSignal *signalB;
 
 @end
 
@@ -20,13 +22,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 组合作用：网络的请求有一个先后顺序的时候，可以先请求A，收到结果后再请求B
+        // 1. 创建信号
+        _signalA = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            NSLog(@"发送请求A");
+            // 发送数据
+//            [subscriber sendNext:@"数据A"];
+            // 发送完需要调用发送完成或发送失败，失败后则不请求B
+//            [subscriber sendCompleted];
+            [subscriber sendError:nil];
+            return nil;
+        }];
+        
+        _signalB = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            NSLog(@"发送请求B");
+            // 发送数据
+            [subscriber sendNext:@"数据B"];
+            // 发送完需要调用发送完成或发送失败
+            [subscriber sendCompleted];
+            return nil;
+        }];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
         // RACCommand 命令
     //    [self demo1];
-        [self demo2];
+//        [self demo2];
         
         // 绑定
     //    [self demo3]; // bind
@@ -38,7 +59,7 @@
     //    [self demo6];
         
         // concat 组合
-    //    [self demo7];
+        [self demo7];
         
         // then 忽略掉第一个信号的所有值
     //    [self demo8];
@@ -207,26 +228,7 @@
 }
 
 -(void)demo7{
-    // 组合作用：网络的请求有一个先后顺序的时候，可以先请求A，收到结果后再请求B
-    // 1. 创建信号
-    RACSignal *signalA = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSLog(@"发送请求A");
-        // 发送数据
-        [subscriber sendNext:@"数据A"];
-        // 发送完需要调用发送完成或发送失败，失败后则不请求B
-        [subscriber sendCompleted];
-//        [subscriber sendError:nil];
-        return nil;
-    }];
     
-    RACSignal *signalB = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSLog(@"发送请求B");
-        // 发送数据
-        [subscriber sendNext:@"数据B"];
-        // 发送完需要调用发送完成或发送失败
-        [subscriber sendCompleted];
-        return nil;
-    }];
     
     // 按顺序组合
 //    // 组合方式1：适用于两个信号需要组合
@@ -235,8 +237,12 @@
 //    }];
     
     // 组合方式2：适用于多个信号需要组合
-    [[RACSignal concat:@[signalA,signalB]] subscribeNext:^(id  _Nullable x) {
+    [[RACSignal concat:@[_signalA,_signalB]] subscribeNext:^(id  _Nullable x) {
         NSLog(@"收到数据：%@",x);
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"error");
+    } completed:^{
+        NSLog(@"complete");
     }];
 }
 

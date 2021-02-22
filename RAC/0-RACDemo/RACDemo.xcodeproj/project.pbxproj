@@ -13,6 +13,7 @@
 		0A7F2E7A251338FB00C506CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A7F2E79251338FB00C506CF /* Assets.xcassets */; };
 		0A7F2E7D251338FB00C506CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7F2E7B251338FB00C506CF /* LaunchScreen.storyboard */; };
 		0A7F2E80251338FB00C506CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7F2E7F251338FB00C506CF /* main.m */; };
+		0AC99A6325A7EB49006CC85A /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC99A6225A7EB49006CC85A /* ViewController2.m */; };
 		7AAC39F604E55D8158F03CFE /* Pods_RACDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B763CEC2FF4D4BEE978BAA /* Pods_RACDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		0A7F2E7C251338FB00C506CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A7F2E7E251338FB00C506CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A7F2E7F251338FB00C506CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0AC99A6125A7EB49006CC85A /* ViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		0AC99A6225A7EB49006CC85A /* ViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		29B763CEC2FF4D4BEE978BAA /* Pods_RACDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RACDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3240749A77C1DB0A2E7A29EE /* Pods-RACDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACDemo.debug.xcconfig"; path = "Target Support Files/Pods-RACDemo/Pods-RACDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		36F1F28D9A09FB6639A8E0B1 /* Pods-RACDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACDemo.release.xcconfig"; path = "Target Support Files/Pods-RACDemo/Pods-RACDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 				0A7F2E6E251338FA00C506CF /* AppDelegate.m */,
 				0A7F2E73251338FA00C506CF /* ViewController.h */,
 				0A7F2E74251338FA00C506CF /* ViewController.m */,
+				0AC99A6125A7EB49006CC85A /* ViewController2.h */,
+				0AC99A6225A7EB49006CC85A /* ViewController2.m */,
 				0A7F2E76251338FA00C506CF /* Main.storyboard */,
 				0A7F2E79251338FB00C506CF /* Assets.xcassets */,
 				0A7F2E7B251338FB00C506CF /* LaunchScreen.storyboard */,
@@ -210,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7F2E75251338FA00C506CF /* ViewController.m in Sources */,
+				0AC99A6325A7EB49006CC85A /* ViewController2.m in Sources */,
 				0A7F2E6F251338FA00C506CF /* AppDelegate.m in Sources */,
 				0A7F2E80251338FB00C506CF /* main.m in Sources */,
 			);
